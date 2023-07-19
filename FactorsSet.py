@@ -1,11 +1,19 @@
-def FactorsSet(array):
-    c=1
-    result_array=[]
-    n=len(array)
-    for i in range(1,(len(array)//2)+1):
-        if n%i==0:
-            c+=1
+def factor(num):
+    i=1
+    count=0
+    while i*i <=num:
+        if num%i==0:
+            if num/i==i:
+                count+=1
+            else:
+                count+=2
+        i+=1
+    return count
     
-    print(c,*result_array,n)
-array=list(map(int,input("enter the array: ").split()))
-print(FactorsSet(array))
+def factor_sort(array):
+    array.sort(key=lambda num:(factor(num),num)) 
+    #lambda function to sort based on the factors count
+    return array
+
+array=list(map(int,input().split()))
+print(factor_sort(array))
